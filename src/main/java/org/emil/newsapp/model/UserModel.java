@@ -4,17 +4,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.emil.newsapp.domain.User;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 public class UserModel {
     private Long id;
     private String username;
-    public static UserModel toModel(Optional<User> entity) {
+    private List<NewsModel> news;   //массив моделей задач
+
+    public static UserModel toModel(User entity) {
         UserModel model = new UserModel();
-        model.setId(entity.get().getId());
-        model.setUsername(entity.get().getUsername());
+        model.setId(entity.getId());
+        model.setUsername(entity.getUsername());
+        model.setNews(entity.getNewsList().stream().map(NewsModel::toModel).collect(Collectors.toList()));      //??    // в entity массив entity задач
         return model;
     }
+
 }

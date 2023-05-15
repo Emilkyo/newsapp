@@ -26,10 +26,10 @@ public class UserService {
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found");
         }
-        return UserModel.toModel(user);
+        return UserModel.toModel(user.orElse(new User()));
     }
 
-    public Long delete(Long id){
+    public Long delete(Long id) {
         userRepo.deleteById(id);
         return id;
     }
