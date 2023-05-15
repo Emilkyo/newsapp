@@ -2,6 +2,7 @@ package org.emil.newsapp.controller;
 
 import org.emil.newsapp.domain.User;
 import org.emil.newsapp.exception.UserAlreadyExistException;
+import org.emil.newsapp.exception.UserNotFoundException;
 import org.emil.newsapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +28,23 @@ public class UserController {
     }
 
 
-    @GetMapping("/")
-    public ResponseEntity getUsers() {
+    @GetMapping
+    public ResponseEntity getOneUser(@RequestParam Long id) {
         try {
-            return ResponseEntity.ok("Okay");
-        } catch (Exception e) {
+            return ResponseEntity.ok(userService.getOneUser(id));
+        } catch (UserNotFoundException e) {
             return ResponseEntity.badRequest().body("User is not found");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Something went wrong");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteUser(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok("User with id: " + userService.delete(id) + " deleted");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Something went wrong");
         }
     }
 }
