@@ -1,27 +1,54 @@
 package org.emil.newsapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.emil.newsapp.domain.User;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String topic;
     private String description;
+    private String source;
+    private boolean archived;
+
 
     // добавить timestamp
     @CreationTimestamp
     private LocalDateTime createdTime;
     @UpdateTimestamp
     private LocalDateTime updatedTime;
+
+    public String getSource() {
+        return source;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public News(String title, String topic, String description, String source, boolean archived) {
+        this.title = title;
+        this.topic = topic;
+        this.description = description;
+        this.archived = archived;
+        this.source = source;
+    }
 
     public Long getId() {
         return id;
@@ -63,7 +90,7 @@ public class News {
         this.updatedTime = updatedTime;
     }
 
-    public boolean isArchived() {
+    public boolean getArchived() {
         return archived;
     }
 
@@ -79,11 +106,10 @@ public class News {
         this.user = user;
     }
 
-    private boolean archived;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference      //штобы не было стэк оверфлоу (?)
+//    @JsonBackReference      //штобы не было стэк оверфлоу (?)
     private User user;
 
 }

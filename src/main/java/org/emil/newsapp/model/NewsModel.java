@@ -6,24 +6,18 @@ import org.emil.newsapp.domain.News;
 public class NewsModel {
     private Long id;
     private String title;
+    private String topics;
     private String description;
-
-    public Boolean getArchived() {
-        return isArchived;
-    }
-
-    public void setArchived(Boolean archived) {
-        isArchived = archived;
-    }
-
-    private Boolean isArchived;
+    private String source;
+    private Boolean archived;
 
     public static NewsModel toModel(News entity) {
         NewsModel model = new NewsModel();
+        model.setArchived(entity.getArchived());
         model.setId(entity.getId());
-        model.setArchived(entity.isArchived());
         model.setDescription(entity.getDescription());
         model.setTitle(entity.getTitle());
+        model.setSource(entity.getSource());
         return model;
     }
 }

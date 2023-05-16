@@ -1,6 +1,8 @@
 package org.emil.newsapp.controller;
 
 import org.emil.newsapp.domain.News;
+import org.emil.newsapp.exception.NewsNotFoundException;
+import org.emil.newsapp.exception.UserNotFoundException;
 import org.emil.newsapp.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +33,30 @@ public class NewsController {
 //        }
 //    }
 
-    @PutMapping
-    public ResponseEntity archived(@RequestParam Long id) {
+//    @PutMapping()
+//    public ResponseEntity archived(@RequestParam Long id) {
+//        try {
+//            return ResponseEntity.ok("News is archived: " + newsService.archived(id));
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body("Something went wrong");
+//        }
+//    }
+
+    @GetMapping
+    public ResponseEntity getOneUser(@RequestParam Long id) {
         try {
-            return ResponseEntity.ok("News is archived: " + newsService.archived(id));
+            return ResponseEntity.ok(newsService.getOneNews(id));
+        } catch (NewsNotFoundException e) {
+            return ResponseEntity.badRequest().body("User is not found");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Something went wrong");
+        }
+    }
+
+    @DeleteMapping(value = "/del?id={id}")
+    public ResponseEntity deleteNews(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok("News with id: " + newsService.delete(id) + " deleted");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Something went wrong");
         }
