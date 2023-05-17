@@ -28,8 +28,8 @@ public class UserController {
     }
 
 
-    @GetMapping
-    public ResponseEntity getOneUser(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity getOneUser(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(userService.getOneUser(id));
         } catch (UserNotFoundException e) {
@@ -39,8 +39,8 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/del")
+    public ResponseEntity deleteUser(@RequestParam Long id) {
         try {
             return ResponseEntity.ok("User with id: " + userService.delete(id) + " deleted");
         } catch (Exception e) {
