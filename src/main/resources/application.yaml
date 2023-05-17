@@ -2,7 +2,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
+
   datasource:
     username: admin
     password: admin

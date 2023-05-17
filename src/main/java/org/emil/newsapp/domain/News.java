@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 
@@ -109,7 +108,7 @@ public class News {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-//    @JsonBackReference      //штобы не было стэк оверфлоу (?)
+    @JsonBackReference      //solution for recursion
     private User user;
 
 }
