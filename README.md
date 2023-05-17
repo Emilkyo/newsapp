@@ -10,7 +10,7 @@ The NewsApp is RESTful API with Spring Boot
 - Data JPA + PostgreSQL.
 
 Проверял API через Postman.
-
+![img.png](src%2Fmain%2Fresources%2Fstatic%2Fimg.png)
 # Part 1: REST service
 
 ## Created methods
@@ -28,9 +28,16 @@ The NewsApp is RESTful API with Spring Boot
 
 _Примечание: при удалении пользователя удаляются все его новости._
 
+### Database:
+Базы данных создаются при билде, через Hibernate
+коротко, видел создание БД так:
+![db.png](src%2Fmain%2Fresources%2Fstatic%2Fdb.png)
+но из-за отсутсвия методов урезал до двух баз **news** и **user**.
 
 # Part 2: Security with API token
 
 Я сделал механизм безопасности через создание пользователя.
+Например, обновить новость можно только от того юзера, от
+кого была создана новость
 
-К сожалению, это всё что смог.
+К сожалению, это всё что получилось.
