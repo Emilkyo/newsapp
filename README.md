@@ -1,47 +1,39 @@
 # NewsApp
 
-The NewsApp is RESTful API with Spring Boot
+The NewsApp is a RESTful API developed with Spring Boot.
 
-### Stack
+## Stack
 
-- spring boot;
-- spring web;
-- lombok;
-- Data JPA + PostgreSQL.
+- Spring Boot
+- Spring Web
+- Lombok
+- Data JPA + PostgreSQL, Hibernate
 
-Проверял API через Postman.
-![img.png](src%2Fmain%2Fresources%2Fstatic%2Fimg.png)
+Verified API using Postman.
 
-# Part 1: REST service
+![API Image](src%2Fmain%2Fresources%2Fstatic%2Fimg.png)
 
-## Created methods
+## REST Service
 
-| Method | Endpoint                          | Description                  |
-|--------|-----------------------------------|------------------------------|
-| POST   | /users                            | Create users                 |
-| GET    | /users/{userId}                   | Get user by id               |
-| DEL    | /users/del?id={userId}            | Delete user by id            |
-| POST   | /news?userId={userId}             | Create news by user          |
-| PUT    | /news/{newsId}?userId={userId}    | Update news by id            |
-| GET    | /news/{id}                        | Get news by id               |
-| GET    | /news/all?page={page}&size={size} | Get all news with pagination |
-| DELETE | /news/del?id={id}                 | Delete news by id            |
+### Created Methods
 
-_Примечание: при удалении пользователя удаляются все его новости._
+| Method | Endpoint                          | Description                      |
+|--------|-----------------------------------|----------------------------------|
+| POST   | /users                            | Create users                     |
+| GET    | /users/{userId}                   | Retrieve user by ID              |
+| DELETE | /users/del?id={userId}            | Delete user by ID                |
+| POST   | /news?userId={userId}             | Create news by user              |
+| PUT    | /news/{newsId}?userId={userId}    | Update news by ID                |
+| GET    | /news/{id}                        | Retrieve news by ID              |
+| GET    | /news/all?page={page}&size={size} | Retrieve all news with pagination|
+| DELETE | /news/del?id={id}                 | Delete news by ID                |
+
+**Note:** Deleting a user will also delete all associated news.
 
 ### Database:
 
-Базы данных создаются при сборке, через Hibernate
+Databases are created during the build process using Hibernate. A simplified view of the database creation is as follows:
 
-Кратко, видел создание БД так:
-![db.png](src%2Fmain%2Fresources%2Fstatic%2Fdb.png)
+![DB Image](src%2Fmain%2Fresources%2Fstatic%2Fdb.png)
 
-но из-за отсутсвия методов урезал до двух баз **news** и **user**.
-
-# Part 2: Security with API token
-
-Я сделал механизм безопасности через создание пользователя.
-Например, обновить новость можно только от того юзера, от
-кого была создана новость
-
-К сожалению, это всё что получилось.
+The databases have been streamlined to two: **news** and **user**.
