@@ -1,8 +1,8 @@
 # NewsApp
 
-The NewsApp is a RESTful API developed with Spring Boot.
+The NewsApp is a RESTful API developed with Spring Boot, powered by Java 17.
 
-## Stack
+## Technology Stack
 - Java 17
 - Spring Boot
 - Spring Web
