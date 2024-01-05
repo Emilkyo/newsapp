@@ -3,7 +3,7 @@
 The NewsApp is a RESTful API developed with Spring Boot.
 
 ## Stack
-
+- Java 17
 - Spring Boot
 - Spring Web
 - Lombok
